@@ -14,6 +14,12 @@ class PriceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PromotionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListaDeCompras
+        fields = '__all__'
+
+
 class ProductPriceListSerializer(serializers.ModelSerializer):
     # product_name = serializers.ReadOnlyField(source='produto.produto')
     produto = serializers.SerializerMethodField()
@@ -23,7 +29,7 @@ class ProductPriceListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Price
-        exclude = ('id', 'created', 'link_produto', 'product_name',) #'__all__'
+        exclude = ('id', 'created', 'link_produto', 'product_name',)
 
 
 class ProductGroupListSerializer(serializers.ModelSerializer):
@@ -34,7 +40,17 @@ class ProductGroupListSerializer(serializers.ModelSerializer):
 
 
 class ShoppingListSerializer(serializers.ModelSerializer):
+    product_name = serializers.ReadOnlyField(source='produto.produto')
+    link_produto = serializers.SerializerMethodField()
+    link_imagem = serializers.SerializerMethodField()
+
+    def get_link_produto(self, obj):
+        return obj.produto.link_produto
+
+    def get_link_imagem(self, obj):
+        return obj.produto.link_imagem
+
     class Meta:
         model = ListaDeCompras
-        fields = '__all__'
+        fields = ['produto', 'preco', 'product_name', 'link_produto', 'link_imagem']#'__all__'
 

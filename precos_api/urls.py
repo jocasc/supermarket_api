@@ -15,19 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mercado.views import ProdutosViewSet, PriceViewSet, ProductPriceList, ProductGroupList
+from mercado.views import ProdutosViewSet, PriceViewSet, PromotionViewSet, ProductPriceList, ProductGroupList, ShoppingList
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('produtos', ProdutosViewSet, basename='Produtos')
 router.register('prices', PriceViewSet, basename='Prices')
-
-
+router.register('promotions', PromotionViewSet, basename='Promotions')
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include(router.urls)),
     path('produto/<int:pk>/prices/', ProductPriceList.as_view()),
-    path('grupo/<int:pk>/produtos/', ProductGroupList.as_view())
+    path('grupo/<int:pk>/produtos/', ProductGroupList.as_view()),
+    path('promocao/<int:day>/<int:month>/<int:year>/produto/', ShoppingList.as_view()),
 ]

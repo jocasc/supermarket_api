@@ -18,6 +18,8 @@ class Grupo(models.Model):
 
 class Produto(models.Model):
     produto = models.CharField(max_length=64)
+    link_produto = models.CharField(max_length=256, null=True)
+    link_imagem = models.CharField(max_length=256, null=True)
     grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE)
     taxa = models.IntegerField(choices=DIFF_CHOICES)
     created = models.DateTimeField(auto_now_add=True)

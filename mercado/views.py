@@ -2,9 +2,15 @@ from rest_framework import viewsets, generics
 from mercado.models import Price, Produto, Grupo, ListaDeCompras
 # from serializer import ProdutoSerializer, PriceSerializer
 from mercado.serializer import ProdutoSerializer, PriceSerializer, \
-    ProductPriceListSerializer, ProductGroupListSerializer, ShoppingListSerializer
+    ProductPriceListSerializer, ProductGroupListSerializer, PromotionSerializer, ShoppingListSerializer
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+
+
+class PromotionViewSet(viewsets.ModelViewSet):
+    """" Exibir todas as promoções """
+    queryset = ListaDeCompras.objects.all()
+    serializer_class = PromotionSerializer
 
 
 class ProdutosViewSet(viewsets.ModelViewSet):
@@ -46,7 +52,9 @@ class ProductGroupList(generics.ListAPIView):
 class ShoppingList(generics.ListAPIView):
     """ listando todos os melhores precos do dia """
     def get_queryset(self):
-        queryset = ListaDeCompras.object.all()
+        queryset = ListaDeCompras.objects.filter(created__day=self.kwargs['day'],
+                                                 created__month=self.kwargs['month'],
+                                                 created__year=self.kwargs['year'])
         return queryset
     serializer_class = ShoppingListSerializer
 
