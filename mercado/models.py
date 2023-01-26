@@ -37,5 +37,15 @@ class Price(models.Model):
         return f'{self.product_name}'
 
 
+class ListaDeCompras(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    preco = models.FloatField(default=0)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.produto}"
+
+
 
 
