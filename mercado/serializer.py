@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mercado.models import Produto, Price, Grupo
+from mercado.models import Produto, Price, Grupo, ListaDeCompras
 
 
 class ProdutoSerializer(serializers.ModelSerializer):
@@ -31,4 +31,10 @@ class ProductGroupListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Produto
         fields = ['produto']
+
+
+class ShoppingListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListaDeCompras
+        fields = '__all__'
 

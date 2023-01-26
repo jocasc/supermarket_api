@@ -1,5 +1,5 @@
 from django.contrib import admin
-from mercado.models import Produto, Price, Grupo
+from mercado.models import Produto, Price, Grupo, ListaDeCompras
 
 
 class Produtos(admin.ModelAdmin):
@@ -15,5 +15,6 @@ class Prices(admin.ModelAdmin):
 admin.site.register(Produto, Produtos)
 admin.site.register(Price, Prices)
 admin.site.register(Grupo)
+admin.site.register(ListaDeCompras)
 
 

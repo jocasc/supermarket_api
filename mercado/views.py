@@ -1,7 +1,8 @@
 from rest_framework import viewsets, generics
-from mercado.models import Price, Produto, Grupo
+from mercado.models import Price, Produto, Grupo, ListaDeCompras
 # from serializer import ProdutoSerializer, PriceSerializer
-from mercado.serializer import ProdutoSerializer, PriceSerializer, ProductPriceListSerializer, ProductGroupListSerializer
+from mercado.serializer import ProdutoSerializer, PriceSerializer, \
+    ProductPriceListSerializer, ProductGroupListSerializer, ShoppingListSerializer
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -40,4 +41,12 @@ class ProductGroupList(generics.ListAPIView):
     serializer_class = ProductGroupListSerializer
     # authentication_classes = [BasicAuthentication]
     # permission_classes = [IsAuthenticated]
+
+
+class ShoppingList(generics.ListAPIView):
+    """ listando todos os melhores precos do dia """
+    def get_queryset(self):
+        queryset = ListaDeCompras.object.all()
+        return queryset
+    serializer_class = ShoppingListSerializer
 
