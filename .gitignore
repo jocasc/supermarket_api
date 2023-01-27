@@ -5,5 +5,3 @@ venv
 db.sqlite3
 #.DS_Store
 my.cnf
-*.cnf
-*my.cnf
