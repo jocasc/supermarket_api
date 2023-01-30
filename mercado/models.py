@@ -20,8 +20,13 @@ class Produto(models.Model):
     produto = models.CharField(max_length=64)
     link_produto = models.CharField(max_length=256, null=True)
     link_imagem = models.CharField(max_length=256, null=True)
+    link_suggested = models.CharField(max_length=256, null=True)
+    name_suggested = models.CharField(max_length=256, null=True)
+    description = models.CharField(max_length=32, null=True)
     grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE)
     taxa = models.IntegerField(choices=DIFF_CHOICES)
+    preco = models.FloatField(default=0)
+    desconto = models.FloatField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
