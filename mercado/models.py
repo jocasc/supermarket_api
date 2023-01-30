@@ -17,7 +17,7 @@ class Grupo(models.Model):
 
 
 class Produto(models.Model):
-    produto = models.CharField(max_length=64)
+    produto = models.CharField(max_length=128)
     link_produto = models.CharField(max_length=256, null=True)
     link_imagem = models.CharField(max_length=256, null=True)
     link_suggested = models.CharField(max_length=256, null=True)
