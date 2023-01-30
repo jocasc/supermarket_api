@@ -5,7 +5,7 @@ from mercado.models import Produto, Price, Grupo, ListaDeCompras
 class ProdutoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Produto
-        fields = ['id', 'produto', 'grupo', 'taxa']
+        fields = '__all__'
 
 
 class PriceSerializer(serializers.ModelSerializer):
