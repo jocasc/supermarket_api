@@ -98,7 +98,6 @@ WSGI_APPLICATION = "precos_api.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Joca$financial',
         'OPTIONS': {
             'read_default_file': os.path.join(BASE_DIR, 'my.cnf'),
         },
